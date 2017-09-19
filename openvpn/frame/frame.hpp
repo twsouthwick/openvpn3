@@ -212,7 +212,7 @@ namespace openvpn {
       // will be aligned on an align_block boundary
       size_t actual_headroom(const void *base) const
       {
-	return headroom_ + (-(size_t(base) + headroom_ + align_adjust_) & (align_block_ - 1));
+	return headroom_ + (-(int(size_t(base) + headroom_ + align_adjust_)) & (align_block_ - 1));
       }
 
       // parameters

@@ -344,7 +344,7 @@ namespace openvpn {
 	  const unsigned int delta = pin.id - id_high;
 	  if (delta < REPLAY_WINDOW_SIZE)
 	    {
-	      base = REPLAY_INDEX(-delta);
+	      base = REPLAY_INDEX(-int(delta));
 	      history[base / 8] |= (1 << (base % 8));
 	      extent += delta;
 	      if (extent > REPLAY_WINDOW_SIZE)

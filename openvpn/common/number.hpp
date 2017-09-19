@@ -34,6 +34,21 @@ namespace openvpn {
 
   OPENVPN_EXCEPTION(number_parse_exception);
 
+  inline unsigned int Negate(bool neg, unsigned int value)
+  {
+    if (neg)
+    {
+      throw std::exception("Cannot negate an unsigned int");
+    }
+
+    return value;
+  }
+
+  inline int Negate(bool neg, int value)
+  {
+    return neg ? -value : value;
+  }
+
   // Parse the number of type T in str, returning
   // value in retval.  Returns true on success.
   // Note -- currently doesn't detect overflow.
@@ -65,7 +80,7 @@ namespace openvpn {
 	  }
 	else if (!c || nondigit_term)
 	  {
-	    retval = neg ? -ret : ret;
+	    retval = Negate(neg, ret);
 	    return true;
 	  }
 	else
